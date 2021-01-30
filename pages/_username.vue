@@ -1,6 +1,6 @@
 <template>
   <div class="container flex flex-col">
-    <EventsCardComponent></EventsCardComponent>
+    <EventsCardComponent v-if="events"></EventsCardComponent>
   </div>
 </template>
 
@@ -10,7 +10,16 @@ import EventsCardComponent from "~/components/EventsCardComponent";
 // import gql from 'graphql-tag'
 // import fetchUser from "~/apollo-api/queries/fetchUserAndUserPlan.gql"
 export default {
-  components: { EventsCardComponent }
+  name: "username",
+  async asyncData({ store,params }) {
+    await  store.dispatch('events/getUserAndPlans', {username: params.username })
+  },
+  components: { EventsCardComponent },
+  computed: {
+    ...mapState({
+      events: (state) => state.events.events,
+    }),
+  },
 }
 </script>
 

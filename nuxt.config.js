@@ -39,7 +39,18 @@ export default {
     '@nuxtjs/pwa',
     // https://go.nuxtjs.dev/content
     '@nuxt/content',
+    '@nuxtjs/apollo',
   ],
+  apollo: {
+    clientConfigs: {
+      default: {
+        // process.env.IRL_ENDPOINT ||
+        // 'https://rickandmortyapi.com/graphql/'
+        // 'https://web.api.irl.com/.netlify/functions/graphql/'
+        httpEndpoint: 'https://web.api.irl.com/.netlify/functions/graphql/',
+      },
+    },
+  },
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {},
