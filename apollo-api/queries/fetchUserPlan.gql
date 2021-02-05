@@ -1,6 +1,6 @@
-query getUserAndPlans($username: String!) {
+query getUserAndPlans($username: String!, $key: String! ) {
   userPlans: publicUserPlan(username: $username) {
-    plans () {
+    plans {
       key
       slug
       title

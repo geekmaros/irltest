@@ -1,58 +1,20 @@
 <template>
   <main class="mx-auto lg:max-w-screen-lg pt-10 pb-10 bg-gray-400">
-    <p>Testing page enter {{ $route.params.key }}</p>
+    <p>Testing page enter {{ event.title }}</p>
   </main>
 </template>
 
 <script>
-import gql from 'graphql-tag'
+import { mapState } from 'vuex'
 export default {
-  apollo: {
-    userPlans:{
-      query: gql `
-        query plans($username: String!) {
-        userPlans: publicUserPlan(username: $username ) {
-          plans {
-            key
-            slug
-            title
-            image
-            link
-            start {
-              utc
-            }
-            end {
-              utc
-            }
-            location {
-              name
-              address
-              city
-              state
-              coordinates {
-                latitude
-                longitude
-              }
-            }
-            attendingOrInterested {
-              username
-              fullName
-              image
-            }
-            attendingOrInterestedCount
-          }
-        }
-      }
-
-      `,
-      variables() {
-        return{
-          username: 'irlideas',
-          key: this.$route.params.key
-        }
-      }
-    }
+  async asyncData({ store,params }) {
+    await  store.dispatch('events/getSingleUserPlans', {key: params.key })
   },
+  computed:{
+    ...mapState({
+      event: (state) =>  state.events.singleEvent[0],
+    }),
+  }
 }
 </script>
 
