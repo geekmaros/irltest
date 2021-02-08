@@ -10,7 +10,9 @@
       <h3 class="text-black leading-9 text-center font-bold text-3xl">
         {{ event.title }}
       </h3>
-      <div class="location-date flex justify-between items-center mt-5">
+      <div
+        class="location-date flex flex-col md:flex-row justify-between items-center mt-5"
+      >
         <div class="date flex items-center">
           <svg
             xmlns="http://www.w3.org/2000/svg"

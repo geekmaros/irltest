@@ -2,7 +2,7 @@
   <nav
     class="h-16 shadow-lg sticky top-0 w-full bg-white flex items-center px-5 z-50"
   >
-    <div class="logo-wrapper">
+    <nuxt-link to="/irldeas" class="logo-wrapper">
       <svg
         viewBox="0 0 100 100"
         version="1.1"
@@ -90,7 +90,7 @@
           </g>
         </g>
       </svg>
-    </div>
+    </nuxt-link>
   </nav>
 </template>
 

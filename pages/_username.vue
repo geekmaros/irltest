@@ -1,18 +1,20 @@
 <template>
   <div class="container flex flex-col">
-    <EventsCardComponent v-if="events"></EventsCardComponent>
+    <EventsCardComponent></EventsCardComponent>
   </div>
 </template>
 
 <script>
 import { mapState } from 'vuex'
-import EventsCardComponent from "~/components/EventsCardComponent";
+import EventsCardComponent from '~/components/EventsCardComponent'
 // import gql from 'graphql-tag'
 // import fetchUser from "~/apollo-api/queries/fetchUserAndUserPlan.gql"
 export default {
-  name: "username",
-  async asyncData({ store,params }) {
-    await  store.dispatch('events/getUserAndPlans', {username: params.username })
+  name: 'username',
+  async asyncData({ store, params }) {
+    await store.dispatch('events/getUserAndPlans', {
+      username: params.username,
+    })
   },
   components: { EventsCardComponent },
   computed: {
@@ -27,5 +29,8 @@ export default {
 .container {
   margin: 0 auto;
   min-height: 100vh;
+  .frame {
+    width: 400px !important;
+  }
 }
 </style>
