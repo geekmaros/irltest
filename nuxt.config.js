@@ -8,28 +8,22 @@ export default {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '' }
+      { hid: 'description', name: 'description', content: '' },
     ],
-    link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
-    ]
+    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: [
-  ],
+  css: [],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [
-  ],
+  plugins: [],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
-  buildModules: [
-    '@nuxtjs/tailwindcss',
-  ],
+  buildModules: ['@nuxtjs/tailwindcss'],
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
@@ -48,6 +42,12 @@ export default {
         // 'https://rickandmortyapi.com/graphql/'
         // 'https://web.api.irl.com/.netlify/functions/graphql/'
         httpEndpoint: 'https://web.api.irl.com/.netlify/functions/graphql/',
+        httpLinkOptions: {
+          fetchOptions: {
+            mode: 'cors', //Cors Needed for external Cross origins, need to allow headers from server
+          },
+          credentials: 'omit', //must be omit to support application/json content type
+        },
       },
     },
   },
@@ -58,27 +58,15 @@ export default {
   // PWA module configuration: https://go.nuxtjs.dev/pwa
   pwa: {
     manifest: {
-      lang: 'en'
-    }
+      lang: 'en',
+    },
   },
 
   // Content module configuration: https://go.nuxtjs.dev/config-content
   content: {},
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {
-  },
-  generate:{
-    done(generator){
-      // Copy dist files to public/_nuxt
-      if (generator.nuxt.options.dev === false && generator.nuxt.options.mode === 'spa') {
-        const publicDir = join(generator.nuxt.options.rootDir, 'public', '_nuxt')
-        removeSync(publicDir) //Clear content from previous builds
-        copySync(join(generator.nuxt.options.generate.dir, '_nuxt'), publicDir)
-        copySync(join(generator.nuxt.options.generate.dir, '200.html'), join(publicDir, 'index.html'))
-        removeSync(generator.nuxt.options.generate.dir) //Delete 'Dist' folder from Laravel root
-      }
-      console.log("After generate dist folder");
-    }
-  }
+  build: {},
+  generate: {
+
 }
